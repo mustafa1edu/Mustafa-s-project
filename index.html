@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mustafa's Project</title>
+    <title>Mustafa's Project ROOM</title>
     <style>
         /* CSS Reset */
         * {
@@ -15,7 +15,7 @@
 
         /* Body Styles */
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            background-color: #F5F0E6; /* Cream background */
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -26,40 +26,63 @@
         /* Main Container */
         .app-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             background-color: white;
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            border: solid 4px #2c3e50;
-            transition: transform 0.3s ease;
+            border: 1px solid rgba(60, 40, 30, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .app-container:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(60, 40, 30, 0.12);
         }
 
         /* Header Styles */
         .app-header {
-            background: linear-gradient(to right, #3498db, #2c3e50);
-            padding: 20px;
+            background: linear-gradient(135deg, #3C2821 0%, #5D4037 100%); /* Deep brown gradient */
+            padding: 25px 30px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #D7CCC8, #8D6E63, #5D4037);
         }
 
         .logo {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid white;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .app-title {
             color: white;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 600;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            z-index: 1;
         }
 
         /* Button Container */
@@ -67,7 +90,8 @@
             padding: 30px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            gap: 25px;
+            background-color: #FFFDFA; /* Light cream */
         }
 
         /* Button Styles */
@@ -76,22 +100,24 @@
             background: white;
             border: none;
             border-radius: 12px;
-            padding: 20px;
+            padding: 25px 20px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 3px 10px rgba(60, 40, 30, 0.08);
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 120px;
+            height: 140px;
+            border: 1px solid rgba(93, 64, 55, 0.1);
         }
 
         .app-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px rgba(60, 40, 30, 0.12);
+            border-color: rgba(93, 64, 55, 0.2);
         }
 
         .app-button::before {
@@ -101,19 +127,35 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(to right, #3498db, #2c3e50);
+            background: linear-gradient(90deg, #8D6E63, #5D4037);
+            transition: height 0.3s ease;
+        }
+
+        .app-button:hover::before {
+            height: 6px;
         }
 
         .app-button i {
-            font-size: 32px;
-            margin-bottom: 12px;
-            color: #2c3e50;
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #5D4037; /* Deep brown */
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .app-button:hover i {
+            transform: scale(1.1);
+            color: #3C2821; /* Darker brown */
         }
 
         .button-text {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 600;
-            color: #2c3e50;
+            color: #5D4037;
+            transition: color 0.3s ease;
+        }
+
+        .app-button:hover .button-text {
+            color: #3C2821;
         }
 
         /* Loading Animation */
@@ -124,7 +166,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(60, 40, 30, 0.85); /* Semi-transparent brown */
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -132,18 +174,19 @@
         }
 
         .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #3498db;
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            border-top: 5px solid #D7CCC8; /* Light brown */
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .loading-text {
             color: white;
             font-size: 18px;
+            letter-spacing: 1px;
         }
 
         @keyframes spin {
@@ -151,8 +194,55 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* Decorative Elements */
+        .corner-accent {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(141, 110, 99, 0.1) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+        }
+
+        .corner-accent.top-right {
+            top: -50px;
+            right: -50px;
+        }
+
+        .corner-accent.bottom-left {
+            bottom: -50px;
+            left: -50px;
+        }
+
         /* Responsive Adjustments */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            .buttons-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+                padding: 25px;
+            }
+            
+            .app-header {
+                padding: 20px;
+                flex-direction: row;
+                text-align: left;
+            }
+            
+            .app-title {
+                font-size: 24px;
+            }
+            
+            .app-button {
+                height: 130px;
+                padding: 20px 15px;
+            }
+            
+            .app-button i {
+                font-size: 32px;
+                margin-bottom: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
             .buttons-container {
                 grid-template-columns: 1fr;
             }
@@ -160,11 +250,21 @@
             .app-header {
                 flex-direction: column;
                 text-align: center;
-                padding: 15px;
+                gap: 15px;
+                padding: 25px 15px;
+            }
+            
+            .logo {
+                width: 50px;
+                height: 50px;
             }
             
             .app-title {
-                font-size: 20px;
+                font-size: 22px;
+            }
+            
+            .app-button {
+                height: 120px;
             }
         }
     </style>
@@ -174,41 +274,64 @@
 <body>
     <div class="app-container">
         <div class="app-header">
+            <div class="corner-accent top-right"></div>
+            <div class="corner-accent bottom-left"></div>
             <img src="https://cdn.solo.to/user/a/668d94bac1a774_92482248.jpg" alt="Logo" class="logo">
-            <h1 class="app-title">Mustafa's Project</h1>
+            <h1 class="app-title">Mustafa's Project Room</h1>
+            <br>
         </div>
         
         <div class="buttons-container">
             <div class="app-button" data-url="https://kurdish-weather-sfcn.vercel.app/">
-                <i class="fas fa-cloud-sun"></i>
-                <span class="button-text">Weather</span>
+                <i class="fas fa-cloud-sun-rain"></i> <!-- Updated to a more detailed weather icon -->
+                <span class="button-text">Weather Application</span>
+                -----------------------
+                <span class="button-text">کەش و هەوا</span>
             </div>
             
-            <div class="app-button" data-url="https://work-mustafa-edu.vercel.app/">
-                <i class="fas fa-book-open"></i>
-                <span class="button-text">Home Work</span>
+            <div class="app-button" data-url="https://doctor-mustafa.vercel.app/">
+                <i class="fas fa-user-md"></i> <!-- More appropriate doctor icon -->
+                <span class="button-text">Doctor</span>
+                -----------------------
+                <span class="button-text">دکتۆری زیرەک</span>
             </div>
             
             <div class="app-button" data-url="https://lms.soran.edu.iq">
-                <i class="fas fa-university"></i>
-                <span class="button-text">LMS Soran University</span>
+                <i class="fas fa-laptop-code"></i> <!-- Better icon for LMS system -->
+                <span class="button-text">LMS Soran University </span>
+                -----------------------
+                <span class="button-text">پۆڕتاڵی زانکۆی سۆران</span>
             </div>
             
             <div class="app-button" data-url="https://sis.soran.edu.iq/home.php">
-                <i class="fas fa-graduation-cap"></i>
+                <i class="fas fa-user-graduate"></i> <!-- More specific graduation icon -->
                 <span class="button-text">SIS Soran University</span>
             </div>
             
+            <div class="app-button" data-url="https://work-mustafa-edu.vercel.app/">
+                <i class="fas fa-tasks"></i> <!-- Better icon for homework/planner -->
+                <span class="button-text">Save homework</span>
+                -----------------------
+                <span class="button-text">دەفتەری پلاندانان</span>
+            </div>
+            
+            <div class="app-button" data-url="https://mustafa-note.vercel.app/">
+                <i class="fas fa-edit"></i> <!-- Better icon for notes -->
+                <span class="button-text">Note</span>
+                -----------------------
+                <span class="button-text">دەفتەری تێبینی</span>
+            </div>
+            
             <div class="app-button" data-url="https://solo.to/mustafa.edu">
-                <i class="fas fa-globe"></i>
-                <span class="button-text">Mustafa Education</span>
+                <i class="fas fa-id-card"></i> <!-- Better icon for personal website -->
+                <span class="button-text">Mustafa.Education</span>
             </div>
         </div>
     </div>
 
     <div class="loading">
         <div class="loading-spinner"></div>
-        <div class="loading-text">Loading...</div>
+        <div class="loading-text">Loading Content...</div>
     </div>
 
     <script>
@@ -225,33 +348,35 @@
                     // Show loading animation
                     loadingScreen.style.display = 'flex';
                     
-                    // Simulate loading delay for better UX (remove in production)
+                    // Open link after short delay for better UX
                     setTimeout(() => {
-                        window.open(url, '_blank');
+                        if (url !== '#') {
+                            window.open(url, '_blank');
+                        }
                         loadingScreen.style.display = 'none';
-                    }, 800);
-                });
-            });
-            
-            // Add hover effects
-            buttons.forEach(button => {
-                button.addEventListener('mouseenter', function() {
-                    this.style.background = '#f8f9fa';
-                });
-                
-                button.addEventListener('mouseleave', function() {
-                    this.style.background = 'white';
+                    }, 600);
                 });
             });
             
             // Add keyboard navigation
             document.addEventListener('keydown', function(e) {
-                if (e.key >= 1 && e.key <= 5) {
+                if (e.key >= 1 && e.key <= 7) { // Updated to 7 buttons
                     const index = parseInt(e.key) - 1;
                     if (buttons[index]) {
                         buttons[index].click();
                     }
                 }
+            });
+            
+            // Add touch feedback for mobile
+            buttons.forEach(button => {
+                button.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                button.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
             });
         });
     </script>
