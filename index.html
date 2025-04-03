@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustafa's Project</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        /* Body Styles */
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Main Container */
+        .app-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: solid 4px #2c3e50;
+            transition: transform 0.3s ease;
+        }
+
+        .app-container:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Header Styles */
+        .app-header {
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+
+        .app-title {
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        /* Button Container */
+        .buttons-container {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        /* Button Styles */
+        .app-button {
+            position: relative;
+            background: white;
+            border: none;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+        }
+
+        .app-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .app-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #3498db, #2c3e50);
+        }
+
+        .app-button i {
+            font-size: 32px;
+            margin-bottom: 12px;
+            color: #2c3e50;
+        }
+
+        .button-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 18px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            .buttons-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+            
+            .app-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <img src="https://cdn.solo.to/user/a/668d94bac1a774_92482248.jpg" alt="Logo" class="logo">
+            <h1 class="app-title">Mustafa's Project</h1>
+        </div>
+        
+        <div class="buttons-container">
+            <div class="app-button" data-url="https://kurdish-weather-sfcn.vercel.app/">
+                <i class="fas fa-cloud-sun"></i>
+                <span class="button-text">Weather</span>
+            </div>
+            
+            <div class="app-button" data-url="https://work-mustafa-edu.vercel.app/">
+                <i class="fas fa-book-open"></i>
+                <span class="button-text">Home Work</span>
+            </div>
+            
+            <div class="app-button" data-url="https://lms.soran.edu.iq">
+                <i class="fas fa-university"></i>
+                <span class="button-text">LMS Soran University</span>
+            </div>
+            
+            <div class="app-button" data-url="https://sis.soran.edu.iq/home.php">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="button-text">SIS Soran University</span>
+            </div>
+            
+            <div class="app-button" data-url="https://solo.to/mustafa.edu">
+                <i class="fas fa-globe"></i>
+                <span class="button-text">Mustafa Education</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all buttons
+            const buttons = document.querySelectorAll('.app-button');
+            const loadingScreen = document.querySelector('.loading');
+            
+            // Add click event to each button
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const url = this.getAttribute('data-url');
+                    
+                    // Show loading animation
+                    loadingScreen.style.display = 'flex';
+                    
+                    // Simulate loading delay for better UX (remove in production)
+                    setTimeout(() => {
+                        window.open(url, '_blank');
+                        loadingScreen.style.display = 'none';
+                    }, 800);
+                });
+            });
+            
+            // Add hover effects
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.background = '#f8f9fa';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.background = 'white';
+                });
+            });
+            
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key >= 1 && e.key <= 5) {
+                    const index = parseInt(e.key) - 1;
+                    if (buttons[index]) {
+                        buttons[index].click();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
