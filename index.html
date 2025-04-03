@@ -49,6 +49,7 @@
             gap: 20px;
             position: relative;
             overflow: hidden;
+            flex-direction: column;
         }
 
         .app-header::after {
@@ -59,6 +60,13 @@
             width: 100%;
             height: 4px;
             background: linear-gradient(90deg, #D7CCC8, #8D6E63, #5D4037);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
         }
 
         .logo {
@@ -83,6 +91,53 @@
             letter-spacing: 0.5px;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
             z-index: 1;
+        }
+
+        /* Welcome Message */
+        .welcome-message {
+            color: #D7CCC8;
+            font-size: 18px;
+            margin-top: 10px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .welcome-message::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D7CCC8, transparent);
+            animation: expandLine 1.5s ease-out 1s forwards;
+            transform: scaleX(0);
+            transform-origin: center;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes expandLine {
+            from {
+                transform: scaleX(0);
+            }
+            to {
+                transform: scaleX(1);
+            }
         }
 
         /* Button Container */
@@ -227,8 +282,18 @@
                 text-align: left;
             }
             
+            .header-content {
+                flex-direction: row;
+            }
+            
             .app-title {
                 font-size: 24px;
+            }
+            
+            .welcome-message {
+                font-size: 16px;
+                text-align: left;
+                margin-top: 5px;
             }
             
             .app-button {
@@ -254,6 +319,11 @@
                 padding: 25px 15px;
             }
             
+            .header-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            
             .logo {
                 width: 50px;
                 height: 50px;
@@ -261,6 +331,11 @@
             
             .app-title {
                 font-size: 22px;
+            }
+            
+            .welcome-message {
+                font-size: 15px;
+                text-align: center;
             }
             
             .app-button {
@@ -276,61 +351,60 @@
         <div class="app-header">
             <div class="corner-accent top-right"></div>
             <div class="corner-accent bottom-left"></div>
-            <img src="https://cdn.solo.to/user/a/668d94bac1a774_92482248.jpg" alt="Logo" class="logo">
-            <h1 class="app-title">Mustafa's Project Room</h1>
-            <br>
+            <div class="header-content">
+                <img src="https://cdn.solo.to/user/a/668d94bac1a774_92482248.jpg" alt="Logo" class="logo">
+                <h1 class="app-title">Mustafa's Project Room</h1>
+            </div>
+            <div class="welcome-message">بەخێربێن بۆ تۆڕی مستەفا کەیفی</div>
         </div>
         
         <div class="buttons-container">
             <div class="app-button" data-url="https://kurdish-weather-sfcn.vercel.app/">
-                <i class="fas fa-cloud-sun-rain"></i> <!-- Updated to a more detailed weather icon -->
+                <i class="fas fa-cloud-sun-rain"></i>
                 <span class="button-text">Weather Application</span>
                 -----------------------
                 <span class="button-text">کەش و هەوا</span>
             </div>
             
-            <div class="app-button" data-url="https://doctor-mustafa.vercel.app/">
-                <i class="fas fa-user-md"></i> <!-- More appropriate doctor icon -->
+            <div class="app-button" data-url="#">
+                <i class="fas fa-user-md"></i>
                 <span class="button-text">Doctor</span>
                 -----------------------
                 <span class="button-text">دکتۆری زیرەک</span>
             </div>
             
             <div class="app-button" data-url="https://lms.soran.edu.iq">
-                <i class="fas fa-laptop-code"></i> <!-- Better icon for LMS system -->
+                <i class="fas fa-laptop-code"></i>
                 <span class="button-text">LMS Soran University </span>
                 -----------------------
                 <span class="button-text">پۆڕتاڵی زانکۆی سۆران</span>
             </div>
             
             <div class="app-button" data-url="https://sis.soran.edu.iq/home.php">
-                <i class="fas fa-user-graduate"></i> <!-- More specific graduation icon -->
+                <i class="fas fa-user-graduate"></i>
                 <span class="button-text">SIS Soran University</span>
             </div>
             
             <div class="app-button" data-url="https://work-mustafa-edu.vercel.app/">
-                <i class="fas fa-tasks"></i> <!-- Better icon for homework/planner -->
+                <i class="fas fa-tasks"></i>
                 <span class="button-text">Save homework</span>
                 -----------------------
                 <span class="button-text">دەفتەری پلاندانان</span>
             </div>
             
-            <div class="app-button" data-url="https://mustafa-note.vercel.app/">
-                <i class="fas fa-edit"></i> <!-- Better icon for notes -->
+            <div class="app-button" data-url="#">
+                <i class="fas fa-edit"></i>
                 <span class="button-text">Note</span>
                 -----------------------
                 <span class="button-text">دەفتەری تێبینی</span>
             </div>
             
             <div class="app-button" data-url="https://solo.to/mustafa.edu">
-                <i class="fas fa-id-card"></i> <!-- Better icon for personal website -->
+                <i class="fas fa-id-card"></i>
                 <span class="button-text">Mustafa.Education</span>
-                <br>
-                <b></b><h1 class="app-title">تۆڕی مستەفا کەیفی</h1></b>
             </div>
         </div>
     </div>
-    
 
     <div class="loading">
         <div class="loading-spinner"></div>
@@ -363,7 +437,7 @@
             
             // Add keyboard navigation
             document.addEventListener('keydown', function(e) {
-                if (e.key >= 1 && e.key <= 7) { // Updated to 7 buttons
+                if (e.key >= 1 && e.key <= 7) {
                     const index = parseInt(e.key) - 1;
                     if (buttons[index]) {
                         buttons[index].click();
@@ -383,6 +457,5 @@
             });
         });
     </script>
-    
 </body>
 </html>
